@@ -5,7 +5,6 @@ function* sendMessage(action) {
     // yield put({type: 'SET_MESSAGES', payload: 'hi'})
     // yield socket.emit('SEND_MESSAGE', );
 
-
     yield socket.emit('SEND_MESSAGE', action.payload)
 }
 
