@@ -6,9 +6,7 @@ function* sendMessage(action) {
 
     const socketAction = {
         type: 'ADD_TODO',
-        payload: {
-          message: action.payload
-        },
+        payload: action.payload,
         meta: {
           socket: {
             channel: 'SEND_MESSAGE',
