@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chat from '../Chat/Chat'
 
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div>
         <h1>Giphy Search!</h1>
+        <Chat />
       </div>
     );
   }
