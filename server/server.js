@@ -35,9 +35,12 @@ io = socket(server)
 io.on('connection', (socket) => {
   console.log(socket.id);
 
-  socket.on('SEND_MESSAGE', function (data) {
-    io.emit('RECEIVE_MESSAGE', data);
-    // console.log(data);
+  // socket.on('SEND_MESSAGE', function (data) {
+  //   io.emit('RECEIVE_MESSAGE', data);
+  //   // console.log(data);
     
+  // })
+  socket.on('SEND_MESSAGE', (data)=>{
+    io.emit('RECEIVE_MESSAGE', data)
   })
 });
