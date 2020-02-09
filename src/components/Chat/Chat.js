@@ -1,49 +1,27 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
-class Chat extends Component {
+class Chat extends Component {  
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            username: '',
-            message: '',
-            messages: []
-        }
-
-        console.log(this.state);
-        
-
-        this.socket = io('localhost:5000');
-
-        this.socket.on('RECEIVE_MESSAGE', function(data){
-            addMessage(data)
-            
-            
-        })
-
-        const addMessage = (data) => {
-            this.setState({
-                messages: [...this.state.messages, data]
-            })
-        }
-
-        
+    state = {
+        username: '',
+        message: '',
+        messages: []
     }
-
-    
 
     componentDidMount(){
         console.log(this.state);
-        
-        
+        this.socket = io('localhost:5000');
+        this.socket.on('RECEIVE_MESSAGE', (data)=>{
+            this.addMessage(data)
+        })
     }
 
-    // state = {
-    //     username: '',
-    //     message: '',
-    //     messages: []
-    // }
+    addMessage = (data) => {
+        this.setState({
+            messages: [...this.state.messages, data]
+        })
+    }
+
 
     sendMessage = ev => {
         ev.preventDefault();
