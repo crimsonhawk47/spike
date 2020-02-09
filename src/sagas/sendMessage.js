@@ -1,20 +1,12 @@
 import {takeLatest, put} from 'redux-saga/effects'
+import socket from '../socket'
 
 function* sendMessage(action) {
     // yield put({type: 'SET_MESSAGES', payload: 'hi'})
     // yield socket.emit('SEND_MESSAGE', );
 
-    const socketAction = {
-        type: 'ADD_TODO',
-        payload: action.payload,
-        meta: {
-          socket: {
-            channel: 'SEND_MESSAGE',
-          },
-        },
-      };
 
-    yield put(socketAction)
+    yield socket.emit('SEND_MESSAGE', action.payload)
 }
 
 function* messagesSaga() {
