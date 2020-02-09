@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client'
-class Chat extends Component {  
+import {connect} from 'react-redux';
+// import io from 'socket.io-client'
+class Chat extends Component {
 
     state = {
         username: '',
@@ -8,28 +9,18 @@ class Chat extends Component {
         messages: []
     }
 
-    componentDidMount(){
-        console.log(this.state);
-        this.socket = io('localhost:5000');
-        this.socket.on('RECEIVE_MESSAGE', (data)=>{
-            this.addMessage(data)
-        })
-    }
-
-    addMessage = (data) => {
-        this.setState({
-            messages: [...this.state.messages, data]
-        })
-    }
-
 
     sendMessage = ev => {
         ev.preventDefault();
-        this.socket.emit('SEND_MESSAGE', {
-            author: this.state.username,
-            message: this.state.message
-        });
-        this.setState({message: ''});
+        this.props.dispatch({
+            type: 'SEND_MESSAGE',
+            payload: {
+                message: this.state.message,
+                username: this.state.username
+            }
+        })
+        this.setState({ message: '' });
+        this.setState({ username: '' });
     }
 
     render() {
@@ -49,4 +40,14 @@ class Chat extends Component {
 
     }
 }
-export default Chat
+
+
+const mapStateToProps = (reduxStore) => {
+    return(
+        {
+            reduxStore
+        }
+    )
+}
+
+export default connect(mapStateToProps)(Chat)
