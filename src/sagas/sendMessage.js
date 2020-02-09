@@ -1,5 +1,5 @@
 import {takeLatest, put} from 'redux-saga/effects'
-import socket from '../socket'
+import socket from '../socket/socket'
 
 function* sendMessage(action) {
     // yield put({type: 'SET_MESSAGES', payload: 'hi'})
