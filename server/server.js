@@ -22,6 +22,8 @@ app.use(express.static('build'));
 // app.use('/api/favorite', favoriteRouter);
 // app.use('/api/category', categoryRouter);
 
+
+
 // App Set //
 const PORT = process.env.PORT || 5000;
 
@@ -30,19 +32,24 @@ server = app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
 
+
+
+
+//Start of websocket work
+//Creating a socket on the server
 io = socket(server)
 
+//When someone connects, we attach some events to their socket
 io.on('connection', (socket) => {
   console.log(socket.id);
 
   socket.on('SEND_MESSAGE', function (data) {
-    console.log(data);
+    console.log(`Getting Message from ID: ${socket.id}`);
+    console.log(`USERNAME: ${data.username}- - - MESSAGE: ${data.message}`);
+    
+    
     //Sending a socket message back to the socket file
     io.emit('RECEIVE_MESSAGE', data);
-    // console.log(data);
     
   })
-  // socket.on('SEND_MESSAGE', (data)=>{
-  //   io.emit('RECEIVE_MESSAGE', data.payload)
-  // })
 });

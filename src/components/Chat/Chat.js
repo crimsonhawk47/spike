@@ -32,8 +32,8 @@ class Chat extends Component {
                 <input type="text" placeholder="Message" value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
                 <br />
                 <button onClick={this.sendMessage}>Send</button>
-                {this.props.reduxStore.messages.map(message => {
-                    return <p>{message}</p>
+                {this.props.reduxStore.messages.map((message, index) => {
+                    return <p key={index}>{message.message} FROM: {message.username}</p>
                 })}
             </div>
         )

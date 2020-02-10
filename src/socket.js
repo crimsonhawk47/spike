@@ -8,7 +8,7 @@ socket.on('RECEIVE_MESSAGE', (data) => {
     console.log(`LOGGING DATA`);
     console.log(data);
     //Logging the socket message in the messages reducer
-    store.dispatch({ type: 'SET_MESSAGES', payload: data.message })
+    store.dispatch({ type: 'SET_MESSAGES', payload: data })
 })
 
 
