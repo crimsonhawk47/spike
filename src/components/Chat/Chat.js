@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid'
+import Input from '@material-ui/core/Input'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles';
+
 
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
+    },
+    message: {
+        fontSize: '20px'
+    },
+    author: {
+        fontSize: '20px',
+        color: 'red'
     }
 });
 
@@ -42,31 +53,42 @@ class Chat extends Component {
 
         return (
             <div>
-                <Grid className={classes.root} container spacing={12} >
-                    {[0, 1].map(err => {
-                        return (
-                            <Grid item xs={4}>
-                                <Grid container justify="center" spacing={1}>
+                <Grid className={classes.root} justify="center" container spacing={2} >
+                    <Grid item container xs={12} justify='center'><h1>Live Chat!</h1></Grid>
+                    <Grid item xs={12}>
+                        <Grid container justify="center" spacing={9}>
 
-                                    <Grid item>
-                                        <input type="text" placeholder="Username" value={this.state.username} onChange={event => this.setState({ username: event.target.value })} />
-                                    </Grid>
-                                    <Grid item>
-                                        <input type="text" placeholder="Message" value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
-                                    </Grid>
-                                    <Grid item >
-                                        <button onClick={this.sendMessage}>Send</button>
-                                    </Grid>
+                            <Grid item>
+                                <Input type="text" placeholder="Username" value={this.state.username} onChange={event => this.setState({ username: event.target.value })} />
+                            </Grid>
+                            <Grid item>
+                                <Input type="text" placeholder="Message" value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
+                            </Grid>
+                            <Grid item >
+                                <Button onClick={this.sendMessage}>Send</Button>
+                            </Grid>
 
-                                    {/* {this.props.reduxStore.messages.map((message, index) => {
-                                return <p key={index}> FROM {message.username}:  {message.message}</p>
-                            })} */}
+
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={5}>
+                        {this.props.reduxStore.messages.map((message, index) => {
+                            return (<Grid container justify='center' spacing={1}>
+                                <Grid item xs={1}></Grid>
+                                <Grid item xs={3} container justify='flex-end'>
+                                    <Typography className={classes.author} key={index}> {message.username+':'} </Typography>
+
+                                </Grid>
+                                {/* <Grid item xs = {1}/> */}
+                                <Grid item xs={7}>
+                                    <Typography className={classes.message} key={index}>{message.message}</Typography>
+
                                 </Grid>
                             </Grid>
-                        )
-                    })}
+                            )
+                        })}
 
-
+                    </Grid>
                 </Grid>
             </div>
         )
