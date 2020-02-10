@@ -67,7 +67,6 @@ class Chat extends Component {
                     </Grid>
                     <Grid item container justify="center">
                         <Button onClick={this.logUsername}>Submit</Button>
-
                     </Grid>
 
                 </Route>
@@ -81,6 +80,9 @@ class Chat extends Component {
                                 </Grid>
                                 <Grid item >
                                     <Button onClick={this.sendMessage}>Send</Button>
+                                </Grid>
+                                <Grid item >
+                                    <Button onClick={()=>{this.props.history.goBack()}}>Back</Button>
                                 </Grid>
 
 
