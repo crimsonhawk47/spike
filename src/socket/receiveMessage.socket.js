@@ -1,4 +1,6 @@
+
 import socket from './socketInit'
+
 import store from '../store'
 
 socket.on('RECEIVE_MESSAGE', (data) => {

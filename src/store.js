@@ -5,6 +5,7 @@ import rootReducer from './reducers/index'
 import rootSaga from './sagas/index'
 
 
+//Allows us to use redux sagas with applyMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
