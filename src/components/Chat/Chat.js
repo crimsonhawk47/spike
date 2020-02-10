@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { json } from 'body-parser';
 // import io from 'socket.io-client'
 class Chat extends Component {
 
