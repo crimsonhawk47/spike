@@ -7,7 +7,7 @@ const socket = io('localhost:5000');
 socket.on('RECEIVE_MESSAGE', (data) => {
     console.log(`LOGGING DATA`);
     console.log(data);
-    // put({type: 'SET_MESSAGES', action: data.message})
+    //Logging the socket message in the messages reducer
     store.dispatch({ type: 'SET_MESSAGES', payload: data.message })
 })
 

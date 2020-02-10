@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
 
   socket.on('SEND_MESSAGE', function (data) {
     console.log(data);
-    
+    //Sending a socket message back to the socket file
     io.emit('RECEIVE_MESSAGE', data);
     // console.log(data);
     

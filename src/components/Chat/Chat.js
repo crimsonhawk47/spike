@@ -12,6 +12,7 @@ class Chat extends Component {
 
     sendMessage = ev => {
         ev.preventDefault();
+        //Sending dispatch with message to sendMessage saga
         this.props.dispatch({
             type: 'SEND_MESSAGE',
             payload: {
