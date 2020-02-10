@@ -1,4 +1,5 @@
-import {takeLatest} from 'redux-saga/effects'
+import {takeLatest, put} from 'redux-saga/effects'
+import axios from 'axios'
 import socket from '../socket'
 
 function* sendMessage(action) {

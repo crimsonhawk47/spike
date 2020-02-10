@@ -2,9 +2,9 @@ import store from './store'
 
 import io from 'socket.io-client'
 
-const socket = io('localhost:5000');
+const socket = io('192.168.10.107:5000');
 
-socket.on('RECEIVE_MESSAGE', (data) => {
+socket.on('SOCKET_MESSAGES', (data) => {
     console.log(`LOGGING DATA`);
     console.log(data);
     //Logging the socket message in the messages reducer

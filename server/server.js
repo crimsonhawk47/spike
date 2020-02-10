@@ -34,7 +34,7 @@ server = app.listen(PORT, () => {
 
 
 
-
+let messages = [];
 //Start of websocket work
 //Creating a socket on the server
 io = socket(server)
@@ -42,14 +42,17 @@ io = socket(server)
 //When someone connects, we attach some events to their socket
 io.on('connection', (socket) => {
   console.log(socket.id);
+  
+  io.to(socket.id).emit('SOCKET_MESSAGES', messages)
 
   socket.on('SEND_MESSAGE', function (data) {
     console.log(`Getting Message from ID: ${socket.id}`);
-    console.log(`USERNAME: ${data.username}- - - MESSAGE: ${data.message}`);
-    
-    
+    console.log(`USERNAME: ${data.username}- - - - MESSAGE: ${data.message}`);
+  
+    messages = [...messages, data];
+    io.emit('SOCKET_MESSAGES', messages);
+
     //Sending a socket message back to the socket file
-    io.emit('RECEIVE_MESSAGE', data);
     
   })
-});
+})

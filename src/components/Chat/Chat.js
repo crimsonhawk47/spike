@@ -11,7 +11,6 @@ class Chat extends Component {
 
 
     sendMessage = ev => {
-        ev.preventDefault();
         //Sending dispatch with message to sendMessage saga
         this.props.dispatch({
             type: 'SEND_MESSAGE',
@@ -33,7 +32,7 @@ class Chat extends Component {
                 <br />
                 <button onClick={this.sendMessage}>Send</button>
                 {this.props.reduxStore.messages.map((message, index) => {
-                    return <p key={index}>{message.message} FROM: {message.username}</p>
+                    return <p key={index}> FROM {message.username}:  {message.message}</p>
                 })}
             </div>
         )
