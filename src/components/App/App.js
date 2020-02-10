@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Giphy Search!</h1>
+        <h1>Live Chat!</h1>
         <Chat />
       </div>
     );
