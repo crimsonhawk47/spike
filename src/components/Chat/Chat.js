@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import Grid from '@material-ui/core/Grid'
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    }
+});
+
 // import io from 'socket.io-client'
 class Chat extends Component {
 
@@ -8,6 +18,9 @@ class Chat extends Component {
         message: '',
         messages: []
     }
+
+
+
 
 
     sendMessage = ev => {
@@ -24,16 +37,37 @@ class Chat extends Component {
     }
 
     render() {
+
+        const { classes } = this.props;
+
         return (
             <div>
-                <input type="text" placeholder="Username" value={this.state.username} onChange={event => this.setState({ username: event.target.value })} />
-                <br />
-                <input type="text" placeholder="Message" value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
-                <br />
-                <button onClick={this.sendMessage}>Send</button>
-                {this.props.reduxStore.messages.map((message, index) => {
-                    return <p key={index}> FROM {message.username}:  {message.message}</p>
-                })}
+                <Grid className={classes.root} container spacing={12} >
+                    {[0, 1].map(err => {
+                        return (
+                            <Grid item xs={4}>
+                                <Grid container justify="center" spacing={1}>
+
+                                    <Grid item>
+                                        <input type="text" placeholder="Username" value={this.state.username} onChange={event => this.setState({ username: event.target.value })} />
+                                    </Grid>
+                                    <Grid item>
+                                        <input type="text" placeholder="Message" value={this.state.message} onChange={event => this.setState({ message: event.target.value })} />
+                                    </Grid>
+                                    <Grid item >
+                                        <button onClick={this.sendMessage}>Send</button>
+                                    </Grid>
+
+                                    {/* {this.props.reduxStore.messages.map((message, index) => {
+                                return <p key={index}> FROM {message.username}:  {message.message}</p>
+                            })} */}
+                                </Grid>
+                            </Grid>
+                        )
+                    })}
+
+
+                </Grid>
             </div>
         )
 
@@ -43,11 +77,11 @@ class Chat extends Component {
 
 
 const mapStateToProps = (reduxStore) => {
-    return(
+    return (
         {
             reduxStore
         }
     )
 }
 
-export default connect(mapStateToProps)(Chat)
+export default withStyles(styles)(connect(mapStateToProps)(Chat))
